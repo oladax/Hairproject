@@ -5,7 +5,7 @@
   }
 
 .Home main{
-  background-color: #fdecefcf;
+  background-color: white;
   width: 100%;
 }
 
@@ -14,7 +14,6 @@
   display: grid;
   place-items: center;
   background-color: #fdecefcf;
-
 }
 
 .Homesubcontainer .Home-sub{
@@ -101,26 +100,25 @@ left: 90px;
 
 
 .stationary-bg {
+  background-color: #f6d317eb;
   border-radius: 144px;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left: 30px;
   padding-right: 30px;
-  display: flex;
+  display: grid;
   font-family: 'Playfair Display', sans-serif;
-  flex-direction: column;
 }
 
-.stationary-text {
-  font-size: 40px;
+.stationary-bg .change {
+  font-size: 27px;
   font-weight: 200;
-  color: red;
-    font-family: 'Tangerine', cursive;
+  color: #3D5A5B;
 }
 
 
-.content-container div span {
+.content-container .stationary-bg  span {
   font-family: 'Tangerine', cursive;
   font-size: 25px;
   color: #3D5A5B;

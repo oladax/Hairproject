@@ -7,20 +7,38 @@ import Advert from "../Advert/Advert";
 import icon from '../Navbars/icon.png'
 import cart from "../Navbars/cart.png";
 import menus from "../Navbars/menu.png";
-import Carousel from "../Home/Carousel";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { auth, signOutUser } from "../firebase"; // Import the necessary Firebase functions
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+
 
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuVisible, setMenuVisible] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+   useEffect(() => {
+     const unsubscribe = auth.onAuthStateChanged((user) => {
+       // Update the state based on the user's authentication status
+       setIsLoggedIn(!!user);
+     });
+
+     // Clean up the subscription when the component unmounts
+     return () => unsubscribe();
+   }, []);
+
+   const handleLogout = async () => {
+     try {
+       await signOutUser();
+     } catch (error) {
+       console.error("Error signing out:", error.message);
+     }
+   };
 
   const linked = () => {
-    alert('Thanks for believing in me. I would work on these too.')
+   setMenuVisible(false);
   }
-
-
-
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +67,6 @@ function Navbar() {
       <div
         className={`dropdownmenu-container ${isMenuVisible ? "appear" : ""}`}
       >
-        {" "}
         <div className="wigstationlogo">
           <div>
             <img src={icon} alt="wigwonderland icon" />
@@ -65,36 +82,45 @@ function Navbar() {
           <div className="menu-div">
             <ol>
               <li>
-                <a onClick={linked} href="#">
-                  Home
-                </a>
+                <NavLink onClick={linked} exact to="/" className="NavLink">
+                  HOME
+                </NavLink>
                 <span></span>
               </li>
               <li>
-                <a onClick={linked} href="#servicehome">
-                  Shop
-                </a>
+                <NavLink onClick={linked} to="/Shop" className="NavLink">
+                  SHOP
+                </NavLink>
+
                 <span></span>
               </li>
 
               <li>
-                <a onClick={linked} href="#contact">
-                  About
-                </a>
-                <span></span>
-              </li>
-              <li>
-                <a onClick={linked} href="#testimonials">
-                  Contact
-                </a>
+                <NavLink onClick={linked} to="/NewIn" className="NavLink">
+                  NEWIN
+                </NavLink>
                 <span></span>
               </li>
             </ol>
 
-            <div className="talktosalebtn">
-              <button onClick={linked} className="hires">
-                <a href="">Talk to Sales </a>
-              </button>
+            <div className="Navbar-login">
+              <span>
+                <a
+                  onClick={linked}
+                  href="https://www.instagram.com/the_wig_wonderland?igsh=YzljYTk1ODg3Zg=="
+                >
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+              </span>
+              {isLoggedIn ? (
+                // If logged in, show the Log Out button
+                <span className="log" onClick={handleLogout}>Log Out</span>
+              ) : (
+                // If not logged in, show the Log In button
+                <Link onClick={linked} to="/Login" className="log">
+                  Log In
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -109,24 +135,29 @@ function Navbar() {
 
             <ul className="links">
               <li>
-                <a href="#">Home</a>
+                <NavLink onClick={closeMenu} exact to="/" className="NavLink">
+                  HOME
+                </NavLink>
               </li>
               <li>
-                <a href="S">Shop</a>
+                <NavLink onClick={linked} to="/Shop" className="NavLink">
+                  SHOP
+                </NavLink>
               </li>
 
               <li>
-                <a href="">About</a>
-              </li>
-              <li>
-                <a href="">Contact</a>
+                <NavLink onClick={linked} to="/NewIn" className="NavLink">
+                  NEW IN
+                </NavLink>
               </li>
             </ul>
 
             <div className="dropdowncart">
               <div className="cart-container">
-                <img src={cart} alt="Cart" />
-                <span className="cart-count">0</span>
+                <NavLink to="/cart" className="NavLink">
+                  <img src={cart} alt="Cart" />
+                  <span className="cart-count">0</span>
+                </NavLink>
               </div>
 
               <div className="dropdown">
@@ -136,9 +167,10 @@ function Navbar() {
             </div>
           </nav>
         </header>
-        
       </main>
-      <Carousel/>
+      <div>
+        <Outlet></Outlet>
+      </div>
     </div>
   );
 }

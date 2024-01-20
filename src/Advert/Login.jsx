@@ -1,12 +1,17 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   signInWithEmailAndPasswordWithEmail,
   signInWithGoogle,
 } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faEye, faEyeSlash, faKey } from "@fortawesome/free-solid-svg-icons";
-import google from './google.png'
+import {
+  faEnvelope,
+  faEye,
+  faEyeSlash,
+  
+} from "@fortawesome/free-solid-svg-icons";
+import google from "./google.png";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,18 +20,22 @@ function Login() {
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [verificationStatus, setVerificationStatus] = useState(null);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-  const togglePasswordVisibility = () =>
-  {
- setShowPassword(!showPassword);
- 
-  } 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  // ... (previous code)
+
+  // ... (previous code)
 
   const handleSignIn = async () => {
     setError(null);
     setShowError(false);
+    setVerificationStatus(null);
 
     if (!email || !password) {
       setShowError(true);
@@ -34,23 +43,37 @@ function Login() {
     }
 
     try {
-      await signInWithEmailAndPasswordWithEmail(email, password);
-      navigate("/");
-    } catch (error) {
-      if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        setError("Invalid email or password. Please try again.");
+      const isVerified = await signInWithEmailAndPasswordWithEmail(
+        email,
+        password
+      );
+
+      if (isVerified) {
+        const errorMessage = "Invalid email or password. Please try again.";
+       // setVerificationStatus(errorMessage);
+        // Show alert for invalid email or password
+        window.alert(errorMessage);
       } else {
-        setError(`Error signing in: ${error.message}`);
+                navigate("/");
+
+        
       }
+    } catch (error) {
+      const errorMessage =
+        error.message || "An error occurred while signing in.";
+    if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
+      // Handle 'auth/invalid-credential' error specifically
+    alert("Invalid email or password. Please try again.");
+    }
     }
   };
+
+  // ... (remaining code)
 
   const handleSignInWithGoogle = async () => {
     setError(null);
     setShowError(false);
+    setVerificationStatus(null);
 
     try {
       await signInWithGoogle();
@@ -64,7 +87,9 @@ function Login() {
     <div className="login">
       <div className="login-con">
         <div className="login-details">
-          <h2>Welcome Back!</h2>
+          <h2>LOGIN</h2>
+
+          <p>If you've created an account with us, please enter.</p>
           <div className="input-div">
             <div className="email-container">
               <input
@@ -97,7 +122,6 @@ function Login() {
                 icon={showPassword ? faEyeSlash : faEye}
                 onClick={togglePasswordVisibility}
               />
-
             </div>
             {showError && !password && (
               <span className="password-error"> Password is required.</span>
@@ -120,7 +144,7 @@ function Login() {
               <Link to="/registration">Register here</Link>
             </p>
           </div>
-          
+
           <p className="OR">Or</p>
 
           <div className="google-div">

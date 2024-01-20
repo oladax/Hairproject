@@ -1,14 +1,11 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPasswordWithEmail,
-  signInWithGoogle,
-} from "../firebase";
+import { signUpWithEmailAndPassword, signInWithGoogle } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faEye, faEyeSlash, faKey } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import google from './google.png'
 
-function Login() {
+function Registration() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,13 +15,9 @@ function Login() {
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-  const togglePasswordVisibility = () =>
-  {
- setShowPassword(!showPassword);
- 
-  } 
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleSignIn = async () => {
+  const handleSignUp = async () => {
     setError(null);
     setShowError(false);
 
@@ -34,29 +27,22 @@ function Login() {
     }
 
     try {
-      await signInWithEmailAndPasswordWithEmail(email, password);
-      navigate("/");
+      await signUpWithEmailAndPassword(email, password);
+      navigate("/login");
     } catch (error) {
-      if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        setError("Invalid email or password. Please try again.");
-      } else {
-        setError(`Error signing in: ${error.message}`);
-      }
+      setError(`Error signing up: ${error.message}`);
     }
   };
 
-  const handleSignInWithGoogle = async () => {
+  const handleSignUpWithGoogle = async () => {
     setError(null);
     setShowError(false);
 
     try {
       await signInWithGoogle();
-      navigate("/");
+      navigate("/login");
     } catch (error) {
-      setError(`Error signing in with Google: ${error.message}`);
+      setError(`Error signing up with Google: ${error.message}`);
     }
   };
 
@@ -64,7 +50,7 @@ function Login() {
     <div className="login">
       <div className="login-con">
         <div className="login-details">
-          <h2>Welcome Back!</h2>
+          <h2>Register with us</h2>
           <div className="input-div">
             <div className="email-container">
               <input
@@ -92,41 +78,35 @@ function Login() {
                   border: showError && !password ? "2px solid red" : "",
                 }}
               />
+
               <FontAwesomeIcon
                 className="fakey"
                 icon={showPassword ? faEyeSlash : faEye}
                 onClick={togglePasswordVisibility}
               />
-
             </div>
             {showError && !password && (
-              <span className="password-error"> Password is required.</span>
+              <p className="validation-error">Password is required.</p>
             )}
           </div>
 
-          <div className="resetpasswordcon">
-            <p>
-              <Link to="/reset-password">Forgot Password?</Link>
-            </p>
-          </div>
-
           <div className="btn-con">
-            <button onClick={handleSignIn}>Sign In</button>
+            <button onClick={handleSignUp}>Sign Up</button>
           </div>
 
           <div className="registercontainer">
             <p>
-              Don't have an account?
-              <Link to="/registration">Register here</Link>
+              Already have an account? <Link to="/login">Login here</Link>
             </p>
           </div>
-          
+
           <p className="OR">Or</p>
 
           <div className="google-div">
-            <button onClick={handleSignInWithGoogle}>
-              Sign In with Google
+            <button onClick={handleSignUpWithGoogle}>
+              Sign Up with Google
             </button>
+
             <img src={google} alt="google" />
           </div>
         </div>
@@ -135,4 +115,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Registration;

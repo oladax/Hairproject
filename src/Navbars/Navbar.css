@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 .Navbar-cons {
   width: 100%;
-  background-color: #fdecefcf;
-}
+    background-color: #fdecefcf;}
 
 main {
   font-family: 'Merriweather', serif;
@@ -16,15 +15,15 @@ main {
 /* Navbar.css */
 
 header {
-  padding: 18px 3px;
-  position: fixed;
-  top: 30px;
-  width: 100%;
-  background: white;
-  display: grid;
-  z-index: 12;
-  place-items: center;
-  transition: top 0.3s ease;
+      padding: 15px 3px;
+        position: fixed;
+        top: 60px;
+        width: 100%;
+        background: #fbf9f9;
+        display: grid;
+        z-index: 12;
+        place-items: center;
+        transition: top 0.3s ease;
 }
 
 .Navbar-con.scrolled {
@@ -71,18 +70,31 @@ li {
   transition: 1sm linear;
 }
 
-li a {
-  color: black;
+li a{color: black;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 800;
-    font-family: 'Poppins', sans-serif;
+  font-size: 13.4px;
+  padding: 10px 19px;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 5px;
+font-family: 'Playfair Display', serif;
+  transition: backgroundcolor 2s ease-in-out;
+}
+
+ .Navlink {
+    color: black;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      transition: transform 2s ease-in-out;
+ 
   }
 
 
-li:hover {
-  color: #d2b7b7;
-}
+li a:hover {
+  background: #fdecefcf;}
 
 
 .cart-container {
@@ -126,6 +138,7 @@ li:hover {
   font-weight: 700;
   letter-spacing: initial;
   font-size: 30px;
+  color: purple;
 }
 
 .dropdowncart {
@@ -183,7 +196,7 @@ li:hover {
   flex-direction: column;
   padding-top: 30px;
   list-style: none;
-  padding-right: 25px;
+  padding-right: 5px;
 }
 
 .menu-div ol li span {
@@ -193,14 +206,14 @@ li:hover {
   padding-top: 10px;
 }
 
-.menu-div a {
-  font-size: 14px;
-  text-decoration: none;
-  font-weight: 500;
-  color: black;
-    font-weight: 800;
-    font-family: 'Poppins', sans-serif;  letter-spacing: 0.5px;
+.menu-div li a{
 
+            color: black;
+     font-size: 11px;
+              font-weight: 700;
+              text-decoration: none;
+              transition: transform 0.2s ease-in-out;
+  font-family: 'merriweather', sans-serif;              letter-spacing: 0.5px;
 }
 
 .menu-div .talktosalebtn {
@@ -245,6 +258,7 @@ li:hover {
   font-weight: 700;
   letter-spacing: initial;
   font-size: 30px;
+  color: purple;
 }
 
 
@@ -289,3 +303,32 @@ li:hover {
   max-width: 100rem;
   transition: top 0.3s ease;
 }
+
+.Navbar-login{
+    margin-left: 3rem;
+      display: flex;
+      flex-direction: column-reverse;
+      margin-top: 2rem;}
+
+             
+.Navbar-login .log{
+   text-decoration: underline;
+          color: black;
+            font-size: 11px;
+            font-weight: 700;
+            transition: transform 0.2s ease-in-out;
+            font-family: 'merriweather', sans-serif;
+            letter-spacing: 0.5px;
+    }  
+
+    .Navbar-login span {
+      margin-top: 3rem;
+          
+    }
+
+
+        a {
+          color: deeppink;
+          font-size: 30px;
+        }
+      

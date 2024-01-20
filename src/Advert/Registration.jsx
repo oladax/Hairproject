@@ -1,39 +1,35 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  signInWithEmailAndPasswordWithEmail,
+  signUpWithEmailAndPassword,
   signInWithGoogle,
+  checkIfUserExists,
 } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
   faEye,
   faEyeSlash,
-  faKey,
 } from "@fortawesome/free-solid-svg-icons";
 import google from "./google.png";
 
-function Login() {
+function Registration() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [verificationStatus, setVerificationStatus] = useState(null);
+  const [userExists, setUserExists] = useState(false); // Added state for user existence
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-  // ... (previous code)
-
-  const handleSignIn = async () => {
+  const handleSignUp = async () => {
     setError(null);
     setShowError(false);
-    setVerificationStatus(null);
+    setUserExists(false); // Reset user existence state
 
     if (!email || !password) {
       setShowError(true);
@@ -41,44 +37,36 @@ function Login() {
     }
 
     try {
-      const isVerified = await signInWithEmailAndPasswordWithEmail(
-        email,
-        password
-      );
+      // Your logic to check if the user exists with the given email
+      const isUserExists = await checkIfUserExists(email);
 
-      if (isVerified) {
-        setVerificationStatus("Invalid email or password. Please try again.");
-        // Show alert for invalid email or password
-        window.alert("Invalid email or password. Please try again.");
+      if (isUserExists) {
+        setUserExists(true);
+        alert(
+          "User with this email already exists. Please use a different email."
+        );
+        navigate("/Login");
+
       } else {
-        
-                navigate("/");
-
+        await signUpWithEmailAndPassword(email, password);
+        navigate("/");
       }
     } catch (error) {
-      if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        setError("Invalid email or password. Please try again.");
-      } else {
-        setError(`Error signing in: ${error.message}`);
-      }
+      alert(
+        "User with this email already exists. Please use a different email."
+      );
     }
   };
 
-  // ... (remaining code)
-
-  const handleSignInWithGoogle = async () => {
+  const handleSignUpWithGoogle = async () => {
     setError(null);
     setShowError(false);
-    setVerificationStatus(null);
 
     try {
       await signInWithGoogle();
       navigate("/");
     } catch (error) {
-      setError(`Error signing in with Google: ${error.message}`);
+      setError(`Error signing up with Google: ${error.message}`);
     }
   };
 
@@ -86,22 +74,30 @@ function Login() {
     <div className="login">
       <div className="login-con">
         <div className="login-details">
-          <h2>Welcome Back!</h2>
+          <h2>CREATE ACCOUNT</h2>
+          <p>If you want to create an account with us, please enter.</p>
           <div className="input-div">
             <div className="email-container">
               <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 value={email}
                 onChange={handleEmailChange}
-                style={{ border: showError && !email ? "2px solid red" : "" }}
+                style={{
+                  border:
+                    (showError || userExists) && !email ? "2px solid red" : "",
+                }}
               />
               <span>
                 <FontAwesomeIcon icon={faEnvelope} />
               </span>
             </div>
-            {showError && !email && (
-              <span className="validation-error">Email is required.</span>
+            {(showError || userExists) && !email && (
+              <span className="validation-error">
+                {userExists
+                  ? "User with this email already exists."
+                  : "Email is required."}
+              </span>
             )}
 
             <div className="password-input-container">
@@ -111,47 +107,45 @@ function Login() {
                 value={password}
                 onChange={handlePasswordChange}
                 style={{
-                  border: showError && !password ? "2px solid red" : "",
+                  border:
+                    (showError || userExists) && !password
+                      ? "2px solid red"
+                      : "",
                 }}
               />
+
               <FontAwesomeIcon
                 className="fakey"
                 icon={showPassword ? faEyeSlash : faEye}
                 onClick={togglePasswordVisibility}
               />
             </div>
-            {showError && !password && (
-              <span className="password-error"> Password is required.</span>
+            {(showError || userExists) && !password && (
+              <p className="validation-error">
+                {userExists
+                  ? "User with this email already exists."
+                  : "Password is required."}
+              </p>
             )}
-
-            {verificationStatus && (
-              <span className="verification-error">{verificationStatus}</span>
-            )}
-          </div>
-
-          <div className="resetpasswordcon">
-            <p>
-              <Link to="/reset-password">Forgot Password?</Link>
-            </p>
           </div>
 
           <div className="btn-con">
-            <button onClick={handleSignIn}>Sign In</button>
+            <button onClick={handleSignUp}>Sign Up</button>
           </div>
 
           <div className="registercontainer">
             <p>
-              Don't have an account?
-              <Link to="/registration">Register here</Link>
+              Already have an account? <Link to="/login">Login here</Link>
             </p>
           </div>
 
           <p className="OR">Or</p>
 
           <div className="google-div">
-            <button onClick={handleSignInWithGoogle}>
-              Sign In with Google
+            <button onClick={handleSignUpWithGoogle}>
+              Sign Up with Google
             </button>
+
             <img src={google} alt="google" />
           </div>
         </div>
@@ -160,4 +154,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Registration;

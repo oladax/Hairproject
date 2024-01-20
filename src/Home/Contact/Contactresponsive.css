@@ -29,14 +29,22 @@
     .maincontact{
             width: 100%;
                 max-width: 100rem;
-                padding-left: 20px;
-                background-image: url(http://localhost:3000/Wigwonderland/static/media/molly-blackbird-a-xEUwYSPLw-unsplash.676d0524b791d38ee6a2.jpg);
+                background-image: url(./smiling-4654734_1280.jpg);
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
+                padding-left: 0px;
     }
     .contact-container{
         padding-top: 4rem;
     }
+
+        .contact-list li {
+            margin-bottom: 10px;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1rem;
+        }
     
 }

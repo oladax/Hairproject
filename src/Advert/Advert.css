@@ -1,31 +1,376 @@
-.Advert{
-    background-color: #fdecefcf;
-    color: black;
-    width: 100%;
-    margin: auto;
-    font-family: 'Merriweather', serif; /* Use Merriweather for the title */
-    
+/* advert.css */
+
+.Advert,
+.Advert .container {
+  background-color: #fdecefcf;
+  width: 100%;
 }
 
-.Advert div{
+.Advert .container {
+  display: flex;
+  justify-content: center;
+  padding: 14px 12px;
+  top: 0;
+  transition: 0.3s ease;
+  z-index: 12;
+}
+
+.advert-con span {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 3px;
+}
+
+.Advert .container .login-con {
   align-items: center;
   display: flex;
   justify-content: center;
-  position: relative;
-  padding: 12px 12px;
-  top: 0;
-  z-index: 12;
-  width: 100%;
-  background-color: #fdecefcf;
-  transition:  0.3s ease;
-
 }
 
-.Advert div span{
-    letter-spacing: 3px;
+.Advert .container .login-con span a {
+  color: #ff1493;
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+.Advert .container .login-con button {
+  background-color: purple;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Playfair Display, sans-serif;
+  height: 35px;
+  opacity: 0.9;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  width: 85px;
+}
+
+.Advert .container .login-con button:active {
+  background-color: #3d5a5b;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.Advert .container .login-con button .a {
+  background-color: purple;
+  border: none;
+  font-size: 1.1em;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Playfair Display, sans-serif;
+  height: 35px;
+  opacity: 0.9;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  width: 85px;
+}
+
+.login {
+  background-color: purple;
+  height: 100vh;
+  position: relative;
+  transition: ease-in-out;
+  z-index: 100;
+}
+
+.login,
+.logindiv {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logindiv {
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-con {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 400px;
+}
+
+.login-details {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-details h2 {
+  font-family: Merriweather, serif;
+  padding-bottom: 1rem;
+  padding-top: 3rem;
+  text-align: center;
+  text-shadow: 1px 0 0 rgba(0, 0, 0, 0.84);
+}
+
+.email-container,
+.password-input-container {
+  margin-bottom: 4px;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.email-container input,
+.password-input-container input {
+  border-color: #000;
+  border-radius: 5px;
+  border-width: 1px;
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 12px;
+  height: 50px;
+  padding-left: 40px;
+  padding-right: 10px;
+  position: relative;
+  width: 300px;
+}
+
+.email-container input::-webkit-input-placeholder,
+.password-input-container input::-webkit-input-placeholder {
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 12px;
+}
+
+.email-container input::placeholder,
+.password-input-container input::placeholder {
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 12px;
+}
+
+.email-container span,
+.password-input-container .fakey {
+    color: #000;
+      font-size: 14px;
+      left: 8px;
+      opacity: 0.6;
+      position: absolute;
+      top: 19px;
+}
+
+.password-input-container span {
+  bottom: 11px;
+  color: #000;
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+}
+
+.password-error,
+.validation-error {
+  color: red;
+  font-size: 13px;
+  margin-top: 5px;
+  padding-left: 2px;
+}
+
+.password-error,
+.resetpasswordcon,
+.validation-error {
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+}
+
+.resetpasswordcon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.resetpasswordcon p a {
+  color: blue;
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-con {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-con button {
+  background: purple;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 14px;
+  height: 50px;
+  margin-top: 20px;
+  outline: none;
+  padding-left: 30px;
+  padding-right: 10px;
+  position: relative;
+  width: 300px;
+}
+
+.registercontainer {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.registercontainer p,
+.registercontainer p a {
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 14px;
+}
+
+.registercontainer p a {
+  color: blue;
+  text-decoration: none;
+}
+
+.OR {
+  font-family: Merriweather, serif;
+  font-size: 15px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.google-div {
+  display: flex;
+  padding-bottom: 3rem;
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.google-div button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+  font-size: 14px;
+  height: 50px;
+  padding-left: 30px;
+  padding-right: 10px;
+  position: relative;
+  width: 300px;
+}
+
+.google-div img {
+    height: 15px;
+      left: 83px;
+      object-fit: cover;
+      position: absolute;
+      top: 42px;
+      width: 15px;
+}
+
+@media screen and (max-width: 990px) {
+  .Advert .container .login-con {
+    display: none;
+  }
+
+  .Advert {
+    background-color: #fdecefcf;
+    color: #000;
+    font-family: Merriweather, serif;
+    margin: auto;
+    width: 100%;
+  }
+
+  .Advert .container {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    position: relative;
+    transition: 0.3s ease;
+    width: 330px;
+    z-index: 14;
+  }
+
+  .advert-con span {
+    color: rgba(0, 0, 0, 0.87);
     font-size: 10px;
     font-style: normal;
-  color: rgba(0, 0, 0, 0.87);
+    letter-spacing: 3px;
+  }
 }
 
+@media screen and (max-width: 320px) {
+
+  .btn-con button,
+  .google-div button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+    font-size: 13px;
+    padding-left: 30px;
+    padding-right: 10px;
+    position: relative;
+    width: 250px;
+  }
+
+  .btn-con button {
+    background: purple;
+    color: #fff;
+    margin-top: 20px;
+    outline: none;
+  }
+
+  .email-container input,
+  .password-input-container input {
+    border-color: #000;
+    border-radius: 5px;
+    border-width: 1px;
+    font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+    font-size: 12px;
+    padding-left: 30px;
+    padding-right: 10px;
+    position: relative;
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 260px) {
+
+  .btn-con button,
+  .google-div button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+    font-size: 13px;
+    height: 40px;
+    padding-left: 30px;
+    padding-right: 10px;
+    position: relative;
+    width: 200px;
+  }
+
+  .btn-con button {
+    background: purple;
+    color: #fff;
+    margin-top: 20px;
+    outline: none;
+  }
+
+  .email-container input,
+  .password-input-container input {
+    border-color: #000;
+    border-radius: 5px;
+    border-width: 1px;
+    font-family: Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif;
+    font-size: 12px;
+    padding-left: 30px;
+    padding-right: 10px;
+    position: relative;
+    width: 200px;
+  }
+}
 

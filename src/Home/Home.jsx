@@ -2,9 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css'; 
 import './Homeresponsive.css'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import human3 from '../Home/Wigfolder/istock2_result-removebg-preview - Copy.png'
 import human2 from '../Home/Wigfolder/thumbnails2-removebg-preview.png'
+import Carousel from './Carousel';
+import ContactForm from './Contact/ContactForm';
+import Lastpage from '../Footer/Lastpage';
+import Endpage from '../Footer/Endpage';
 
 function Home() {
 
@@ -49,6 +52,7 @@ function Home() {
 
   return (
     <div className="Home">
+      <Carousel/>
       <main>
         <div className="Homesubcontainer">
           {/* Content Section */}
@@ -67,13 +71,7 @@ function Home() {
                     effortlessly. Your journey to flawless beauty begins here.
                   </p>
                 </div>
-                <div className="talk-to-sale">
-                  <button>
-                    <a href="">
-                      Talk to Sales 
-                    </a>
-                  </button>
-                </div>
+                
               </div>
             </section>
 
@@ -84,10 +82,10 @@ function Home() {
                 <div className="bestseller-container">
                   <div className="stationary-control">
                     <div className="stationary-bg">
-                      <span className="stationary-text">
+                      <span className="change">
                         {changeWord.First}
                       </span>
-                      <span className="stationary-text">
+                      <span className="change">
                         {changeWord.Second}
                       </span>
                     </div>
@@ -98,6 +96,9 @@ function Home() {
           </div>
         </div>
       </main>
+      <ContactForm />
+      <Lastpage />
+  <Endpage/>
     </div>
   );
 }

@@ -2,7 +2,8 @@ body {
     background-color: white;
      color: #000000d9;
      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    /*font-family: 'Playfair Display', serif;  Use Playfair Display for the title */
+     transition: ease-in-out 1ms;
+    /*c  Use Playfair Display for the title */
 }
 
 /* Hide the scrollbar for webkit-based browsers (e.g., Chrome, Safari) */
@@ -138,6 +139,13 @@ body::-webkit-scrollbar {
     text-decoration: none;
     outline: none;
     font-family: 'Playfair Display', sans-serif;
+}
+
+.textcon div button a{
+    color: white;
+    font-family: 'Playfair Display', sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
 }
 
 .textcon div button:active {

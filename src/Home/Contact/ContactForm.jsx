@@ -1,29 +1,21 @@
 // ContactForm.jsx
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 import "./Contact.css";
 import "./Contact.css";
 import "./Contactresponsive.css";
 
-
-import {
-  faAddressCard,
-  faPhone,
-  faEnvelope,
-  faGlobe,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 function ContactForm() {
   const [text, setText] = useState("Send Message");
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-    phoneNumber: "", // New field for phone number
+    phoneNumber: "",
   });
-
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
@@ -64,44 +56,53 @@ function ContactForm() {
     }
 
     return errors;
-  };
+  }; // ... (unchanged)
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formErrors = validateForm();
 
     if (Object.keys(formErrors).length === 0) {
-      sendEmail();
+      await sendEmail();
     } else {
       setErrors(formErrors);
     }
   };
 
-  const sendEmail = () => {
-    const serviceID = "service_uf9lhaz";
-    const templateID = "template_15uicz8";
-    const userID = "pr6ImLwlWeomB8shk";
+  const sendEmail = async () => {
+    const url = "http://localhost:3001/send-email";
     setText("Sending");
 
-    emailjs
-      .send(serviceID, templateID, formData, userID)
-      .then((response) => {
-        console.log("Email sent successfully:", response);
-        //alert('Email sent successfully!');
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Add the following line to include credentials (if needed)
+          credentials: "include",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (response.ok) {
+        alert("Message sent successfully!");
+        setText("Send Message");
         setFormData({
           name: "",
           email: "",
           message: "",
-          phoneNumber: "", // Clear phone number field after sending email
+          phoneNumber: "",
         });
         setErrors({});
-      })
-      .catch((error) => {
-        console.error("Failed to send email:", error);
+      } else {
+        console.error("Failed to send email");
         alert("Failed to send email");
-      });
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Error sending email");
+    }
   };
 
   return (
@@ -110,9 +111,8 @@ function ContactForm() {
         <h2>Contact Us</h2>
         <p>Any question or remarks? Just write us a message</p>
       </div>
-      
 
-<div className="form-container">
+      <div className="form-container" id="contact">
         <form onSubmit={handleSubmit}>
           <div>
             <h3>Send Us a Message</h3>
@@ -177,37 +177,28 @@ function ContactForm() {
 
         <div className="maincontact">
           <div className="contact-container">
-            <h3>Contact Infomation</h3>
+            <h3>Location Address</h3>
             <div className="contact-list">
               <li>
                 <em className="icon">
                   <FontAwesomeIcon icon={faGlobe} />
                 </em>
-                <a className="text">USA</a>
+                <a className="text">Atlanta, GA </a>
               </li>
+
               <li>
-                <em className="icon">
-                  <FontAwesomeIcon icon={faPhone} />
-                </em>
-                <a href="tel:435738292992" className="text">
-                  (521) 267-8362
+                <a
+                  href="https://www.instagram.com/the_wig_wonderland?igsh=YzljYTk1ODg3Zg=="
+                  className="insta"
+                >
+                  <FontAwesomeIcon icon={faInstagram} />
                 </a>
-              </li>
-              <li>
-                <em className="icon">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </em>
-                <a href="mailto:da" className="text">
-                  Wigwonderland@gmail.com
-                </a>
-              </li>
-              <li>
-                
-                <em className="icon">
-                  <FontAwesomeIcon icon={faAddressCard} />
-                </em>
-                <a className="text">
-                  10226 Battlefield Dr Manassas, Virginia(VA), 20110
+
+                <a
+                  href="https://www.instagram.com/the_wig_wonderland?igsh=YzljYTk1ODg3Zg=="
+                  className="text"
+                >
+                  Instagram
                 </a>
               </li>
             </div>
@@ -215,6 +206,7 @@ function ContactForm() {
         </div>
       </div>
     </div>
-  )
-            }
+  );
+}
+
 export default ContactForm;
