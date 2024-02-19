@@ -17,6 +17,7 @@ function Registration() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false); // Added loading state
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -36,23 +37,31 @@ function Registration() {
       return;
     }
 
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
+
+    setLoading(true); // Set loading to true during the sign-up process
+
     try {
       // Your logic to check if the user exists with the given email
       const isUserExists = await checkIfUserExists(email);
 
       if (isUserExists) {
+        setLoading(false); // Set loading to false if user already exists
         setUserExists(true);
-        alert(
+        setError(
           "User with this email already exists. Please use a different email."
         );
         navigate("/Login");
-
       } else {
         await signUpWithEmailAndPassword(email, password);
         navigate("/");
       }
     } catch (error) {
-      alert(
+      setLoading(false); // Set loading to false in case of an error
+      setError(
         "User with this email already exists. Please use a different email."
       );
     }
@@ -63,10 +72,12 @@ function Registration() {
     setShowError(false);
 
     try {
+      setLoading(true); // Set loading to true during the sign-up process
       await signInWithGoogle();
       navigate("/");
     } catch (error) {
-      setError(`Error signing up with Google: ${error.message}`);
+      setLoading(false); // Set loading to false in case of an error
+      setError(`Error signing up with Google.`);
     }
   };
 
@@ -76,11 +87,13 @@ function Registration() {
         <div className="login-details">
           <h2>CREATE ACCOUNT</h2>
           <p>If you want to create an account with us, please enter.</p>
+          <p className="error">{error}</p>
           <div className="input-div">
             <div className="email-container">
               <input
                 type="email"
                 placeholder="Email"
+                required
                 value={email}
                 onChange={handleEmailChange}
                 style={{
@@ -130,7 +143,9 @@ function Registration() {
           </div>
 
           <div className="btn-con">
-            <button onClick={handleSignUp}>Sign Up</button>
+            <button onClick={handleSignUp} disabled={loading}>
+              {loading ? "Signing Up..." : "Sign Up"}
+            </button>
           </div>
 
           <div className="registercontainer">
@@ -142,8 +157,8 @@ function Registration() {
           <p className="OR">Or</p>
 
           <div className="google-div">
-            <button onClick={handleSignUpWithGoogle}>
-              Sign Up with Google
+            <button onClick={handleSignUpWithGoogle} disabled={loading}>
+              {loading ? "Signing Up..." : "Sign Up with Google"}
             </button>
 
             <img src={google} alt="google" />

@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import "./Contact.css";
 import "./Contact.css";
 import "./Contactresponsive.css";
-
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import Endpage from "../../Footer/Endpage";
 
 function ContactForm() {
   const [text, setText] = useState("Send Message");
@@ -205,6 +205,7 @@ function ContactForm() {
           </div>
         </div>
       </div>
+      <Endpage/>
     </div>
   );
 }

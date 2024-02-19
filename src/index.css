@@ -146,6 +146,7 @@ body::-webkit-scrollbar {
     font-family: 'Playfair Display', sans-serif;
     text-decoration: none;
     font-size: 0.9em;
+    margin: auto;
 }
 
 .textcon div button:active {

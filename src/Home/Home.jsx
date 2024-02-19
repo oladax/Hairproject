@@ -5,9 +5,9 @@ import './Homeresponsive.css';
 import human3 from '../Home/Wigfolder/istock2_result-removebg-preview - Copy.png'
 import human2 from '../Home/Wigfolder/thumbnails2-removebg-preview.png'
 import Carousel from './Carousel';
-import ContactForm from './Contact/ContactForm';
 import Lastpage from '../Footer/Lastpage';
 import Endpage from '../Footer/Endpage';
+import Bestseller from '../Bestseller/Bestseller';
 
 function Home() {
 
@@ -52,7 +52,7 @@ function Home() {
 
   return (
     <div className="Home">
-      <Carousel/>
+      <Carousel />
       <main>
         <div className="Homesubcontainer">
           {/* Content Section */}
@@ -62,7 +62,7 @@ function Home() {
                 <div>
                   <h3>Premium Wigs and Exceptional Human Hairs</h3>
                 </div>
-                
+
                 <div className="description-para">
                   <p>
                     Discover luxury lace front wigs and bundles at affordable
@@ -71,7 +71,6 @@ function Home() {
                     effortlessly. Your journey to flawless beauty begins here.
                   </p>
                 </div>
-                
               </div>
             </section>
 
@@ -82,12 +81,8 @@ function Home() {
                 <div className="bestseller-container">
                   <div className="stationary-control">
                     <div className="stationary-bg">
-                      <span className="change">
-                        {changeWord.First}
-                      </span>
-                      <span className="change">
-                        {changeWord.Second}
-                      </span>
+                      <span className="change">{changeWord.First}</span>
+                      <span className="change">{changeWord.Second}</span>
                     </div>
                   </div>
                 </div>
@@ -96,9 +91,11 @@ function Home() {
           </div>
         </div>
       </main>
-      <ContactForm />
+      
+        <Bestseller/>
+      
       <Lastpage />
-  <Endpage/>
+      <Endpage />
     </div>
   );
 }

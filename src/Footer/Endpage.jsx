@@ -1,8 +1,6 @@
 import React from 'react'
-import america from './t_american-express-card4564-removebg-preview.png'
-import union from './Unionpay-removebg-preview.png'
-import discovercard from './t_discover-card4683-removebg-preview.png'
-import mastercard from './master-card-icon-11657_prev_ui.png'
+import Quicklinks from './Quicklinks';
+
 
 function Endpage() {
   return (
@@ -13,12 +11,13 @@ function Endpage() {
           src="https://cdna.iconscout.com/img/mastercard.1afc104.svg"
           alt=""
         />
-        <img src="https://cdna.iconscout.com/img/visa.4759160.svg" alt="" />
         <img src="https://cdna.iconscout.com/img/amex.a2eb19c.svg" alt="" />
         <img
           src="https://cdna.iconscout.com/img/discover-logo.5f1ae25.svg"
           alt=""
         />
+        <img src="https://cdna.iconscout.com/img/visa.4759160.svg" alt="" />
+
         <img
           src="https://cdna.iconscout.com/img/google-pay.50c14aa.svg"
           alt=""
@@ -28,8 +27,10 @@ function Endpage() {
           alt=""
         />
       </div>
+      <Quicklinks />
+
       <div className="copyright">
-        <p>&copy; 2024 WigWonderland. All rights reserved.</p>
+        <p>&copy; 2024 Wigwonderland. All rights reserved.</p>
       </div>
     </div>
   );

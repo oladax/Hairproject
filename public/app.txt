@@ -1,164 +1,152 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPasswordWithEmail,
-  signInWithGoogle,
-} from "../firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faEye,
-  faEyeSlash,
-  faKey,
-} from "@fortawesome/free-solid-svg-icons";
-import google from "./google.png";
+/* Media query for a maximum width of 900px */
+@media screen and (max-width: 990px) {
 
-function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [showError, setShowError] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [verificationStatus, setVerificationStatus] = useState(null);
+    .collapsible-container img {
+            width: 25px;
+            height: 25px;
+            margin-right: 3px;
+            margin-top: -1px;
+            border-style: double;
+            vertical-align: top;
+            object-fit: cover;
+            border-radius: 15px;
+            border-color: deeppink;
+        }
+       header{ position: fixed;
+            top: 50px;
+            width: 100%;
+        background-color: #e3e3e3;
+                    display: grid;
+            z-index: 12;
+            place-items: center;
+            transition: top 0.3s ease;
+            padding-top: 24px;
+            padding-bottom: 24px;
+            padding-left: 3px;
+            padding-right: 3px;}
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  
+   
+    .links{
+        display: none;
+    }
+  
 
-  // ... (previous code)
-
-  // ... (previous code)
-
-  const handleSignIn = async () => {
-    setError(null);
-    setShowError(false);
-    setVerificationStatus(null);
-
-    if (!email || !password) {
-      setShowError(true);
-      return;
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        max-width: 100rem;
+        transition: top 0.3s ease;
     }
 
-    try {
-      const isVerified = await signInWithEmailAndPasswordWithEmail(
-        email,
-        password
-      );
-
-      if (isVerified) {
-        const errorMessage = "Invalid email or password. Please try again.";
-       // setVerificationStatus(errorMessage);
-        // Show alert for invalid email or password
-        window.alert(errorMessage);
-      } else {
-                navigate("/");
-
-        
-      }
-    } catch (error) {
-      const errorMessage =
-        error.message || "An error occurred while signing in.";
-      setError(errorMessage);
-      // Set the error message to display in your component
-      setVerificationStatus(errorMessage);
-      alert(errorMessage)
-    }
-  };
-
-  // ... (remaining code)
-
-  const handleSignInWithGoogle = async () => {
-    setError(null);
-    setShowError(false);
-    setVerificationStatus(null);
-
-    try {
-      await signInWithGoogle();
-      navigate("/");
-    } catch (error) {
-      setError(`Error signing in with Google: ${error.message}`);
-    }
-  };
-
-  return (
-    <div className="login">
-      <div className="login-con">
-        <div className="login-details">
-          <h2>Welcome Back!</h2>
-          
-
-          <div className="input-div">
-            <div className="email-container">
-              <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={handleEmailChange}
-                style={{ border: showError && !email ? "2px solid red" : "" }}
-              />
-              <span>
-                <FontAwesomeIcon icon={faEnvelope} />
-              </span>
-            </div>
-            {showError && !email && (
-              <span className="validation-error">Email is required.</span>
-            )}
-
-            <div className="password-input-container">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                style={{
-                  border: showError && !password ? "2px solid red" : "",
-                }}
-              />
-              <FontAwesomeIcon
-                className="fakey"
-                icon={showPassword ? faEyeSlash : faEye}
-                onClick={togglePasswordVisibility}
-              />
-            </div>
-            {showError && !password && (
-              <span className="password-error"> Password is required.</span>
-            )}
-
+        .cart {
            
-          </div>
+        }
 
-          <div className="resetpasswordcon">
-            <p>
-              <Link to="/reset-password">Forgot Password?</Link>
-            </p>
-          </div>
 
-          <div className="btn-con">
-            <button onClick={handleSignIn}>Sign In</button>
-          </div>
+                .dropdown {
+                    display: block;
+                    position: relative;
+                    left: 20px;
+                }
+        
+              
 
-          <div className="registercontainer">
-            <p>
-              Don't have an account?
-              <Link to="/registration">Register here</Link>
-            </p>
-          </div>
+               
 
-          <p className="OR">Or</p>
 
-          <div className="google-div">
-            <button onClick={handleSignInWithGoogle}>
-              Sign In with Google
-            </button>
-            <img src={google} alt="google" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+                .dropdown li:active{
+                    color: black;
+                }
+
+                
+                                 }
+
+
+    @media screen and (max-width: 800px) {
+   
+        .links{
+            display: none;
+        }
+          .cart-container img {
+              width: 24px;
+              height: 24px;
+          }
+    
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            max-width: 100rem;
+            transition: top 0.3s ease;
+        }
+    }
+
+        @media screen and (max-width: 500px) {
+   
+            .links{
+                display: none;
+            }
+          
+        
+            .navbar{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding-left: 5px;
+                padding-right: 5px;
+                max-width: 100rem;
+                transition: top 0.3s ease;
+            }
+
+  }
+  
+  @media screen and (max-width: 400px) {
+   
+    .links{
+        display: none;
+    }
+  
+
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-left: 11px;
+        padding-right: 11px;
+        max-width: 100rem;
+        transition: top 0.3s ease;
+    }
+
+   
+
+    .logo h1{
+        font-family: 'Sevillana', serif;
+        font-weight: 700;
+        letter-spacing: initial;
+        font-size: 24px;
+    }
+
+    .dropdown button{
+        background: none;
+        border: none;
+        vertical-align: inherit;
+        cursor: pointer;
+        font-size: 18px;
+        }
+
+        .cart {
+            list-style: none;
+            width: 0px;
+            font-size: 18px;
+          }
 }
-
-export default Login;

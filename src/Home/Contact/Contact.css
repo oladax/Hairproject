@@ -1,14 +1,14 @@
 /* Contact.css */
 
 .contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 100%;
-    flex-direction: column;
-   background-color: white;
-    
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            width: 100%;
+            flex-direction: column;
+            background: #fafafa;
+            padding-top: 6rem;
 }
 
 .contact .divs {

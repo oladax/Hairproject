@@ -8,12 +8,8 @@ display: flex;
     width: 100%;
     flex-direction: column;
     color: red;
-    height: 55vh;
     padding-bottom: 2rem;
-        background-image: url(https://demo2.wpopal.com/shopio/wp-content/uploads/2022/01/h19_img4.jpg);
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
+background: #fafafa;
 }
 
 .subscribe-con{
@@ -29,7 +25,7 @@ display: flex;
 
 
         .subscribe-con .container  em{
-        font-family: 'tangerine', sans-serif;
+        font-family: 'Sevillana', serif;
             font-size: 30px;
             font-weight: 400;
             color: black;
@@ -112,37 +108,42 @@ display: flex;
 
 
  .paymentcardcon {
-     background-color: white;
-     width: 100%;
+        background-color: #e3e3e3;
+            width: 100%;
  }
 
  .paymentcardcon p{
-        margin-top: 3rem;
-            font-size: 1em;
-            padding-left: 10px;
-            padding-right: 10px;
-            color: rgb(3 3 3 / 79%);
-            text-align: center;
-            margin-bottom: -2rem;
+    margin-top: 3rem;
+        font-size: 1em;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: rgb(3 3 3 / 79%);
+        text-align: center;
+        margin-bottom: 0rem;
+        font-family: fangsong;
  }
 
   .paymentcard img {
-        width: 100%;
-            max-width: 80px;
             cursor: pointer;
+            margin-bottom: 5px;
             margin-left: 10px;
             margin-right: 10px;
-            margin-bottom: 5px;
+            max-width: 95px;
+            width: 100%;
+            height: 57px;
+            padding: 3px 13px;
   }
 
  .copyright {
         text-align: center;
-        font-size: 0.9em;
-        text-decoration: none;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        opacity: 0.8;
-        font-weight: 500;
-        padding-bottom: 4rem;
+            font-size: 0.9em;
+            text-decoration: none;
+            opacity: 0.8;
+            font-weight: 500;
+            padding-bottom: 2.9rem;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-top-color: #0000004a;
 
  }
 
@@ -151,12 +152,14 @@ display: flex;
      justify-content: center;
      align-items: center;
      padding-top: 3rem;
+     padding-bottom: 5rem;
      vertical-align: top;
      flex-wrap: wrap;
  }
 
 
-                  
+ 
+
                   
 @media screen and (max-width: 700px) {
     .container div h2{
@@ -172,6 +175,17 @@ display: flex;
                      padding-right: 10px;
                      color: rgb(3 3 3 / 79%);
                  }
+
+                                 .paymentcardcon p {
+                                     margin-top: 3rem;
+                                     font-size: 0.9em;
+                                     padding-left: 10px;
+                                     padding-right: 10px;
+                                     color: rgb(3 3 3 / 79%);
+                                     text-align: center;
+                                     margin-bottom: 0rem;
+                                     font-family: fangsong;
+                                 }
 }
 
 
@@ -180,7 +194,6 @@ display: flex;
         @media screen and (max-width: 500px) {
 .paymentcard img {
         width: 100%;
-        max-width: 70px;
         cursor: pointer;
     }
         }
@@ -188,7 +201,6 @@ display: flex;
                   @media screen and (max-width: 400px) {
                       .paymentcard img {
                           width: 100%;
-                          max-width: 60px;
                           cursor: pointer;
                       }
                   }
@@ -196,7 +208,6 @@ display: flex;
                                    @media screen and (max-width: 300px) {
                                        .paymentcard img {
                                            width: 100%;
-                                           max-width: 50px;
                                            cursor: pointer;
                                        }
                                    }
@@ -214,7 +225,7 @@ display: flex;
                 display: flex;
                     padding-top: 3rem;
                     vertical-align: top;
-                    flex-direction: column;
+                    flex-wrap: wrap;
                     justify-content: center;
                     align-items: center;
      }

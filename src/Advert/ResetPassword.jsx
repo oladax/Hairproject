@@ -11,6 +11,9 @@ function ResetPassword() {
   const [resetSuccess, setResetSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
 
+  // Loading state for Reset Password button
+  const [loadingResetPassword, setLoadingResetPassword] = useState(false);
+
   const handleEmailChange = (e) => setEmail(e.target.value);
 
   const handleResetPassword = async () => {
@@ -24,23 +27,26 @@ function ResetPassword() {
     }
 
     try {
-      // Check if the email is verified
-      const isEmailVerified = await checkIfEmailVerified(email);
+      setLoadingResetPassword(true);
 
-      if (isEmailVerified) {
-        // If email is verified, perform the password reset
+      const isUserExists = await checkIfEmailVerified(email);
+      console.log("Is user exists:", isUserExists);
+
+      if (isUserExists) {
+        
+ setResetSuccess(false);
+ setError("User with this email does not exist.");      } else {
+       
         await resetPassword(email);
         setResetSuccess(true);
-      } else {
-        // If email is not verified, show an error
-        setResetSuccess(false);
-        setError("Email is not verified. Please verify your email address.");
       }
     } catch (error) {
       setResetSuccess(false);
-      setError(`Error resetting password: ${error.message}`);
+      setError(`Invalid email address`);
+    } finally {
+      setLoadingResetPassword(false);
     }
-  };
+  }
 
   return (
     <div className="login">
@@ -50,7 +56,8 @@ function ResetPassword() {
           <div className="input-div">
             <div className="email-container">
               <input
-                type="text"
+                type="email"
+                required
                 placeholder="Enter your email"
                 value={email}
                 onChange={handleEmailChange}
@@ -66,7 +73,14 @@ function ResetPassword() {
           </div>
           {error && <p className="error-message">{error}</p>}
           <div className="btn-con">
-            <button onClick={handleResetPassword}>Reset Password</button>
+            <button
+              onClick={handleResetPassword}
+              disabled={loadingResetPassword}
+            >
+              {loadingResetPassword
+                ? "Resetting Password..."
+                : "Reset Password"}
+            </button>
           </div>
           {resetSuccess && (
             <p className="success-message">

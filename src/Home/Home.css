@@ -5,16 +5,14 @@
   }
 
 .Home main{
-  background-color: white;
-  width: 100%;
+            background: #fafafa;  width: 100%;
 }
 
 .Homesubcontainer {
   width: 100%;
   display: grid;
   place-items: center;
-  background-color: #fdecefcf;
-}
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);}
 
 .Homesubcontainer .Home-sub{
   display: grid;
@@ -196,6 +194,8 @@ left: 90px;
 .image-container img.low-contrast {
     filter: contrast(0.8) brightness(1.2);
 }
+
+
 
 @keyframes colorChange {
   0% {

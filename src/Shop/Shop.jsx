@@ -3,6 +3,9 @@ import "./Shop.css";
 
 
 function Shop() {
+
+
+  
   return (
     <div className='shop'>
        <h2>SHOP NEXT</h2>

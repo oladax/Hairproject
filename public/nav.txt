@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faShoppingCart, faTimes, faUser, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
+import "./Navbarresponsive.css";
 import Advert from "../Advert/Advert";
 import icon from "../Navbars/icon.png";
 import cart from "./cart..svg";
@@ -10,41 +11,8 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { auth, signOutUser } from "../firebase";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import account from "./account.svg";
-import "./Navbar.css";
-import "./Navbarresponsive.css";
-import wigwonderlogo from '../Footer/1-removebg-preview.png'
-import shoppingcart from '../Navbars/shopping-cart.png'
 
 function Navbar() {
-  const location = useLocation();
-
-  useEffect(() => {
-    document.title = getTitleFromPath(location.pathname);
-  }, [location]);
-
-  const getTitleFromPath = (path) => {
-    switch (path) {
-      case "/":
-        return "100% Human Hair Online Store | Official Website | Best Sellers | Virgin Hair Outlet";
-      case "/Shop":
-        return "Lace Front Wigs | Wig Lace Front | Human Hair Wig Shop | Wigwonderland Hair";
-      case "/NewIn":
-        return "HD Closure & Frontal";
-      case "/Contact":
-        return "Contact Us | Wigwonderland";
-      case "/cart":
-        return "Product Cart - Wigwonderland Hair";
-      case "/Login":
-        return "Login";
-      case "/reset-password":
-        return "Reset Password";
-      case "/registration":
-        return "Registration";
-      default:
-        return "Wigwonderland, Lace Front Wigs, Bundles, Luxury Wigs, Affordable Wigs, Premium Hair, Beauty";
-    }
-  };
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -71,9 +39,9 @@ function Navbar() {
 
       if (user) {
         setUserEmail(user.email);
-
-        const newUserPhotoURL = user.photoURL || account;
-        setUserPhotoURL(newUserPhotoURL);
+        
+const newUserPhotoURL = user.photoURL || account;
+setUserPhotoURL(newUserPhotoURL);          //console.log("ppppeppe" + '' + user.photoURL);
       } else {
         setUserEmail("");
         setUserPhotoURL(account);
@@ -160,13 +128,6 @@ function Navbar() {
                 </NavLink>
                 <span></span>
               </li>
-
-              <li>
-                <NavLink onClick={linked} to="/Contact" className="NavLink">
-                  CONTACT
-                </NavLink>
-                <span></span>
-              </li>
             </ol>
 
             <div className="Navbar-login">
@@ -182,7 +143,6 @@ function Navbar() {
             </div>
             <span>
               <a
-                className="instagram"
                 onClick={linked}
                 href="https://www.instagram.com/the_wig_wonderland?igsh=YzljYTk1ODg3Zg=="
               >
@@ -196,11 +156,8 @@ function Navbar() {
       <main>
         <header className={`Navbar-con ${isScrolled ? "scrolled" : ""}`}>
           <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
-            <div className="dropdown" onClick={toggleMenu}>
-              <FontAwesomeIcon icon={faBars} />
-            </div>
             <div className="logo">
-              <img src={wigwonderlogo} />
+              <h1>Wigwonderland</h1>
             </div>
 
             <ul className="links">
@@ -224,26 +181,23 @@ function Navbar() {
                   HD CLOSURE & FRONTAL
                 </NavLink>
               </li>
-
-              <li>
-                <NavLink onClick={linked} to="/Contact" className="NavLink">
-                  CONTACT
-                </NavLink>
-              </li>
             </ul>
 
             <div className="dropdowncart">
               <div className="collapsible-container">
-                <FontAwesomeIcon icon={faUser} />
+                <img src={userPhotoURL} alt="profile" />
                 <p className="profile">{userEmail}</p>
               </div>
 
               <div className="cart-container">
                 <NavLink onClick={linked} to="/cart" className="NavLink">
-                  <div className="cart">
-                    <FontAwesomeIcon icon={faShoppingCart} />
-                  </div>
+                  <img src={cart} alt="Cart" />
+                  <span className="cart-count">0</span>
                 </NavLink>
+              </div>
+
+              <div className="dropdown">
+                <img onClick={toggleMenu} src={menus} alt="menu" />
               </div>
             </div>
           </nav>
@@ -257,3 +211,6 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+

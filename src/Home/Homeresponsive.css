@@ -3,8 +3,7 @@
         display: grid;
         place-items: center;
                 padding-top: 0rem;
-                background-color: white;
-    }
+            background: #fafafa;    }
 }
 
 
@@ -13,8 +12,7 @@
         display: grid;
         place-items: center;
         padding-top: 0rem;
-        background-color: white;
-    }
+            background: #fafafa;    }
 }
 
 @media screen and (max-width:1160px) {
@@ -22,9 +20,8 @@
         display: grid;
         place-items: center;
         padding-top: 0rem;
-        gap: 50px;
-         background-color: white;
-    }
+        
+            background: #fafafa;    }
 
     .content-section .content-container {
         display: flex;
@@ -40,24 +37,32 @@
     }
 }
 
+    @media screen and (max-width:1032px) {
+
+
+    .links{
+        
+    }
+
+    }
+
 @media screen and (max-width: 990px) {
     .firstimage {
             background-position: center;
-                background-image: url(../Home/Carou.jpg);
-                max-width: 100rem;
-                height: 80vh;
+                 background-image: url(../Home/Carou.jpg);
+                    max-width: 100rem;
+                height: 77vh;
                 width: 100%;
                 background-size: cover;
                 position: relative;
-                top: 58px;
+                top: 63px;
         }
 
     .Homesubcontainer {
         width: 100%;
         display: grid;
         place-items: center;
-        background-color: #fdecefcf;
-      
+            background: #fafafa;
       }
       
       .Homesubcontainer .Home-sub {
@@ -95,8 +100,7 @@
     display: grid;
     place-items: center;
     padding-top: 0rem;
-    background-color: white;
-  
+            background: #fafafa;
 }
 
 .container {

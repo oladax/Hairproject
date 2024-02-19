@@ -9,7 +9,6 @@ import {
   faEnvelope,
   faEye,
   faEyeSlash,
-  
 } from "@fortawesome/free-solid-svg-icons";
 import google from "./google.png";
 
@@ -20,7 +19,12 @@ function Login() {
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [verificationStatus, setVerificationStatus] = useState(null);
+
+  // Loading state for Sign In button
+  const [loadingSignIn, setLoadingSignIn] = useState(false);
+
+  // Loading state for Sign In with Google button
+  const [loadingSignInWithGoogle, setLoadingSignInWithGoogle] = useState(false);
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -28,14 +32,9 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-  // ... (previous code)
-
-  // ... (previous code)
-
   const handleSignIn = async () => {
     setError(null);
     setShowError(false);
-    setVerificationStatus(null);
 
     if (!email || !password) {
       setShowError(true);
@@ -43,6 +42,9 @@ function Login() {
     }
 
     try {
+      // Set loading state to true for Sign In button
+      setLoadingSignIn(true);
+
       const isVerified = await signInWithEmailAndPasswordWithEmail(
         email,
         password
@@ -50,36 +52,37 @@ function Login() {
 
       if (isVerified) {
         const errorMessage = "Invalid email or password. Please try again.";
-       // setVerificationStatus(errorMessage);
-        // Show alert for invalid email or password
-        window.alert(errorMessage);
+        setError(errorMessage);
       } else {
-                navigate("/");
-
-        
+        navigate("/");
       }
     } catch (error) {
       const errorMessage =
         error.message || "An error occurred while signing in.";
-    if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
-      // Handle 'auth/invalid-credential' error specifically
-    alert("Invalid email or password. Please try again.");
-    }
+      if (errorMessage === "Firebase: Error (auth/invalid-credential).") {
+       setError("Invalid email or password. Please try again.");
+      }
+    } finally {
+      // Reset loading state for Sign In button
+      setLoadingSignIn(false);
     }
   };
-
-  // ... (remaining code)
 
   const handleSignInWithGoogle = async () => {
     setError(null);
     setShowError(false);
-    setVerificationStatus(null);
 
     try {
+      // Set loading state to true for Sign In with Google button
+      setLoadingSignInWithGoogle(true);
+
       await signInWithGoogle();
       navigate("/");
     } catch (error) {
-      setError(`Error signing in with Google: ${error.message}`);
+      setError(`Error signing in with Google.`);
+    } finally {
+      // Reset loading state for Sign In with Google button
+      setLoadingSignInWithGoogle(false);
     }
   };
 
@@ -88,12 +91,13 @@ function Login() {
       <div className="login-con">
         <div className="login-details">
           <h2>LOGIN</h2>
-
           <p>If you've created an account with us, please enter.</p>
+          <p className="error">{error}</p>
           <div className="input-div">
             <div className="email-container">
               <input
-                type="text"
+                type="email"
+                required
                 placeholder="Email"
                 value={email}
                 onChange={handleEmailChange}
@@ -111,6 +115,7 @@ function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                required
                 value={password}
                 onChange={handlePasswordChange}
                 style={{
@@ -135,7 +140,9 @@ function Login() {
           </div>
 
           <div className="btn-con">
-            <button onClick={handleSignIn}>Sign In</button>
+            <button onClick={handleSignIn} disabled={loadingSignIn}>
+              {loadingSignIn ? "Signing In..." : "Sign In"}
+            </button>
           </div>
 
           <div className="registercontainer">
@@ -148,8 +155,13 @@ function Login() {
           <p className="OR">Or</p>
 
           <div className="google-div">
-            <button onClick={handleSignInWithGoogle}>
-              Sign In with Google
+            <button
+              onClick={handleSignInWithGoogle}
+              disabled={loadingSignInWithGoogle}
+            >
+              {loadingSignInWithGoogle
+                ? "Signing In..."
+                : "Sign In with Google"}
             </button>
             <img src={google} alt="google" />
           </div>

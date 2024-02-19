@@ -9,6 +9,7 @@ import { auth, signOutUser } from "../firebase"; // Import the necessary Firebas
 
 function Advert() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loadingLogout, setLoadingLogout] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -22,9 +23,12 @@ function Advert() {
 
   const handleLogout = async () => {
     try {
+      setLoadingLogout(true); // Set loading state to true during logout
       await signOutUser();
     } catch (error) {
       console.error("Error signing out:", error.message);
+    } finally {
+      setLoadingLogout(false); // Reset loading state after logout
     }
   };
 
@@ -42,20 +46,26 @@ function Advert() {
             <a href="https://www.instagram.com/the_wig_wonderland?igsh=YzljYTk1ODg3Zg==">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
-            
           </span>
           {isLoggedIn ? (
-            // If logged in, show the Log Out button
-            <button onClick={handleLogout}>Log Out</button>
+            // If logged in, show the Log Out button or loading spinner
+            <button onClick={handleLogout}>
+              {loadingLogout ? "Logging Out..." : "Log Out"}
+            </button>
           ) : (
             // If not logged in, show the Log In button
             <button>
-              
-              <NavLink className='a' to="/Login" >
-                Log In
+              <NavLink className="a" to="/Login">
+                Sign In
               </NavLink>
             </button>
           )}
+
+          <button>
+            <NavLink className="a" to="/registration">
+              Sign Up
+            </NavLink>
+          </button>
         </div>
       </div>
     </div>

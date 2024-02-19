@@ -2,13 +2,13 @@
 
 .Advert,
 .Advert .container {
-  background-color: #fdecefcf;
-  width: 100%;
+    width: 100%;
+      background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
 }
 
 .Advert .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   padding: 14px 12px;
   top: 0;
   transition: 0.3s ease;
@@ -29,24 +29,25 @@
 }
 
 .Advert .container .login-con span a {
-  color: #ff1493;
-  font-size: 30px;
+  color: rgba(238, 36, 144, 0.849);  font-size: 30px;
   margin-right: 20px;
 }
 
 .Advert .container .login-con button {
-  background-color: purple;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  font-family: Playfair Display, sans-serif;
-  height: 35px;
-  opacity: 0.9;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  width: 85px;
+            background-color: #ff1493d1;
+              border: none;
+              border-radius: 30px;
+              color: white;
+              margin-left: 16px;
+              cursor: pointer;
+              font-family: Playfair Display, sans-serif;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              opacity: 0.9;
+              outline: none;
+              text-align: center;
+              text-decoration: none;
+              width: 70px;
 }
 
 .Advert .container .login-con button:active {
@@ -56,25 +57,25 @@
 }
 
 .Advert .container .login-con button .a {
-  background-color: purple;
-  border: none;
-  font-size: 1.1em;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  font-family: Playfair Display, sans-serif;
-  height: 35px;
-  opacity: 0.9;
-  outline: none;
-  text-align: center;
-  text-decoration: none;
-  width: 85px;
+    font-size: 13px;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      cursor: pointer;
+      font-family: Playfair Display, sans-serif;
+      height: 35px;
+      opacity: 0.9;
+      outline: none;
+      text-align: center;
+      margin: 0;
+      text-decoration: none;
+      width: 70px;
 }
 
 .login {
-  background-color: purple;
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);;
   height: 100vh;
-  position: relative;
+    position: relative;
   transition: ease-in-out;
   z-index: 100;
 }
@@ -121,6 +122,12 @@
   margin-bottom: 4px;
   margin-top: 2rem;
   position: relative;
+}
+
+
+
+.login-details p{
+  text-align: center;
 }
 
 .email-container input,
@@ -200,6 +207,12 @@
   flex-direction: column;
 }
 
+.error{
+      text-align: center;
+        color: red;
+        padding-top: 10px;
+}
+
 .btn-con button {
   background: purple;
   border: none;
@@ -261,12 +274,12 @@
 }
 
 .google-div img {
-    height: 15px;
-      left: 83px;
-      object-fit: cover;
-      position: absolute;
-      top: 42px;
-      width: 15px;
+      height: 16px;
+        left: 79px;
+        object-fit: cover;
+        position: absolute;
+        top: 41px;
+        width: 16px;
 }
 
 @media screen and (max-width: 990px) {
