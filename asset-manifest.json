@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Hairproject/static/css/main.3bba3164.css",
+    "main.css": "/Hairproject/static/css/main.76d5f91c.css",
     "main.js": "/Hairproject/static/js/main.579bf62e.js",
     "static/media/thumbnails2-removebg-preview.png": "/Hairproject/static/media/thumbnails2-removebg-preview.fcdc417b23b1f473c09b.png",
     "static/media/istock2_result-removebg-preview - Copy.png": "/Hairproject/static/media/istock2_result-removebg-preview - Copy.f7af19c6f51d16d5bdf0.png",
@@ -13,11 +13,11 @@
     "static/media/1-removebg-preview.png": "/Hairproject/static/media/1-removebg-preview.5c71661daa8ee7475a69.png",
     "index.html": "/Hairproject/index.html",
     "static/media/account.svg": "/Hairproject/static/media/account.267ee3175f59a84297b655f341b2478a.svg",
-    "main.3bba3164.css.map": "/Hairproject/static/css/main.3bba3164.css.map",
+    "main.76d5f91c.css.map": "/Hairproject/static/css/main.76d5f91c.css.map",
     "main.579bf62e.js.map": "/Hairproject/static/js/main.579bf62e.js.map"
   },
   "entrypoints": [
-    "static/css/main.3bba3164.css",
+    "static/css/main.76d5f91c.css",
     "static/js/main.579bf62e.js"
   ]
 }
