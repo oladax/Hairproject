@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/Hairproject/static/css/main.76d5f91c.css",
-    "main.js": "/Hairproject/static/js/main.579bf62e.js",
+    "main.css": "/Hairproject/static/css/main.ca93f8fa.css",
+    "main.js": "/Hairproject/static/js/main.b45bbf85.js",
     "static/media/thumbnails2-removebg-preview.png": "/Hairproject/static/media/thumbnails2-removebg-preview.fcdc417b23b1f473c09b.png",
     "static/media/istock2_result-removebg-preview - Copy.png": "/Hairproject/static/media/istock2_result-removebg-preview - Copy.f7af19c6f51d16d5bdf0.png",
     "static/media/smiling-4654734_1280.jpg": "/Hairproject/static/media/smiling-4654734_1280.439750a9163f64c6cf5d.jpg",
     "static/media/Carou.jpg": "/Hairproject/static/media/Carou.7cc440e6dce7470dcac0.jpg",
     "static/media/Carousel.jpg": "/Hairproject/static/media/Carousel.c903d11d6fac7a31369b.jpg",
     "static/media/google.png": "/Hairproject/static/media/google.3598943754d65e4590f6.png",
-    "static/media/human hair.webp": "/Hairproject/static/media/human hair.199cdaa77a73bfc4ccb9.webp",
     "static/media/icon.png": "/Hairproject/static/media/icon.cfcacd1947be771cee7d.png",
     "static/media/1-removebg-preview.png": "/Hairproject/static/media/1-removebg-preview.5c71661daa8ee7475a69.png",
     "index.html": "/Hairproject/index.html",
     "static/media/account.svg": "/Hairproject/static/media/account.267ee3175f59a84297b655f341b2478a.svg",
-    "main.76d5f91c.css.map": "/Hairproject/static/css/main.76d5f91c.css.map",
-    "main.579bf62e.js.map": "/Hairproject/static/js/main.579bf62e.js.map"
+    "main.ca93f8fa.css.map": "/Hairproject/static/css/main.ca93f8fa.css.map",
+    "main.b45bbf85.js.map": "/Hairproject/static/js/main.b45bbf85.js.map"
   },
   "entrypoints": [
-    "static/css/main.76d5f91c.css",
-    "static/js/main.579bf62e.js"
+    "static/css/main.ca93f8fa.css",
+    "static/js/main.b45bbf85.js"
   ]
 }
